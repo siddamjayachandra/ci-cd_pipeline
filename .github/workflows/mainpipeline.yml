@@ -72,5 +72,5 @@ jobs:
             docker rm my-app || true
             
             # Start a new container
-            docker run -d -p 5000:5000 --name my-app $IMAGE_NAME:latest
+            docker run -d -p 80:80 --name my-app $IMAGE_NAME:latest
 
