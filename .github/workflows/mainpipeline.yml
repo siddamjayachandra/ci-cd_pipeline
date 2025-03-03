@@ -16,17 +16,15 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+
       - name: Install Dependencies
         run: |
-        pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install pytest  # Explicitly install pytest
-   
-        #- name: Install Dependencies
-        #       run: pip install -r requirements.txt  # Modify for your project
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest  # Explicitly install pytest
 
       - name: Run Unit Tests
-        run: pytest  # adjust this based on your test framework
+        run: python -m pytest  # Explicitly use Python module
 
   build-and-push:
     needs: test
@@ -62,3 +60,4 @@ jobs:
             docker stop my-app || true
             docker rm my-app || true
             docker run -d -p 80:80 --name my-app siddamjayachandra/my-app:latest
+
