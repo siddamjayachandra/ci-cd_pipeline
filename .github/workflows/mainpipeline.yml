@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: Install Dependencies
         run: |
@@ -49,9 +49,11 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t my-app:${{ github.sha }} .
-          docker tag my-app:${{ github.sha }} siddamjayachandra/my-app:latest
-          docker push siddamjayachandra/my-app:latest
+          IMAGE_NAME=siddamjayachandra/my-app
+          docker build -t $IMAGE_NAME:${{ github.sha }} .
+          docker tag $IMAGE_NAME:${{ github.sha }} $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:${{ github.sha }}
+          docker push $IMAGE_NAME:latest
 
   deploy:
     needs: build-and-push
@@ -64,8 +66,8 @@ jobs:
           username: ${{ secrets.STAGING_SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker pull siddamjayachandra/my-app:latest
-            docker stop my-app || true
-            docker rm my-app || true
-            docker run -d -p 80:80 --name my-app siddamjayachandra/my-app:latest
+            IMAGE_NAME=siddamjayachandra/my-app
+            docker pull $IMAGE_NAME:latest
+            docker-compose down || true
+            docker-compose up -d
 
