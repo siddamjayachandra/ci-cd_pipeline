@@ -56,11 +56,11 @@ jobs:
         run: ls -R
 
       - name: Verify Dockerfile Exists
-          run: |
-           if [ ! -f "Dockerfile" ]; then
-              echo "❌ ERROR: Dockerfile not found in the repository!"
-              exit 1
-          fi
+        run: |
+         if [ ! -f "Dockerfile" ]; then
+            echo "❌ ERROR: Dockerfile not found in the repository!"
+            exit 1
+         fi
 
       - name: Build and Push Docker Image
         run: |
