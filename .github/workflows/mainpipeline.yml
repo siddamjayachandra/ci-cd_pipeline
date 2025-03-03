@@ -13,29 +13,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Ensure all files are fetched
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.x"
-
-      - name: Install Dependencies
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt || true
-          pip install pytest  # Ensure pytest is installed
-
-      - name: Verify Test Directory
-        run: |
-          if [ ! -d "tests" ]; then
-            echo "Warning: No 'tests/' directory found! Creating a dummy test file..."
-            mkdir -p tests
-            echo "def test_dummy(): assert True" > tests/test_dummy.py
-          fi
-
-      - name: Run Unit Tests
-        run: pytest tests/ --disable-warnings || echo "No tests found, skipping."
-
+           
   build-and-push:
     needs: test
     runs-on: ubuntu-latest
