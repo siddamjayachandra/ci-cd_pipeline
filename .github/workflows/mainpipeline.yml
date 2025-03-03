@@ -4,16 +4,7 @@ on:
   push:
     branches:
       - main
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Ensure all files are fetched
-           
+          
   build-and-push:
     needs: test
     runs-on: ubuntu-latest
