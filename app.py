@@ -74,7 +74,7 @@ html_template = """
                 } else {
                     clearInterval(interval);
                     loader.style.display = "none";
-                    message.innerText = `You thought about number ${number}! 🤯`;
+                    message.innerText = `In you are mind you are thinking about this number ${number}.\n That is the reason you have entered this number ${number}.\n So after reading your mind you are thinking about ${number}\n If you want me to read your mind again please enter the number and click on Read my mind. \n Thankyou🤯`;
                 }
             }, 2000);
         }
