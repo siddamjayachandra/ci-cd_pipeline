@@ -74,7 +74,7 @@ html_template = """
                 } else {
                     clearInterval(interval);
                     loader.style.display = "none";
-                    message.innerText = `You thought about number ${number}! 🤯`;
+                    message.innerText = `You thought about number ${number-2}! 🤯`;
                 }
             }, 2000);
         }
