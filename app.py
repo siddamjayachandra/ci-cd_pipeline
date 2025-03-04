@@ -37,46 +37,49 @@ html_template = """
 </head>
 <body>
     <h1>Mind Reader</h1>
-    <p>Enter a number, and I'll read your mind!</p>
-    <input type="number" id="userNumber" placeholder="Enter a number">
+    <p>Enter a number, and I'll reveal something about your nature!</p>
+    <input type="number" id="userNumber" placeholder="Enter a number" min="0" max="99">
     <button onclick="startMindReading()">Read My Mind</button>
     <div id="loader" class="loader"></div>
     <p id="message" class="hidden"></p>
     
     <script>
+        const insights = {};
+        for (let i = 0; i <= 99; i++) {
+            insights[i] = `Your personality is unique and number ${i} represents a special trait in you.`;
+        }
+
+        insights[0] = "You have a calm and balanced nature, seeking peace over chaos.";
+        insights[1] = "You are a natural leader, always ready to take initiative.";
+        insights[2] = "You have a dual personality—sometimes introverted, sometimes extroverted.";
+        insights[3] = "You are creative and full of imagination, always thinking outside the box.";
+        insights[4] = "You value stability and discipline, preferring structure in life.";
+        insights[5] = "You are adventurous and love experiencing new things.";
+        insights[6] = "You are a caregiver, always looking after others' well-being.";
+        insights[7] = "You are a deep thinker, always questioning the mysteries of life.";
+        insights[8] = "You have a strong sense of ambition and strive for success.";
+        insights[9] = "You are compassionate and deeply understand emotions.";
+        insights[10] = "You are optimistic and always see the bright side of life.";
+        insights[99] = "You are an enigma—completely unpredictable!";
+
         function startMindReading() {
-            const number = document.getElementById("userNumber").value;
+            const number = parseInt(document.getElementById("userNumber").value, 10);
             const message = document.getElementById("message");
             const loader = document.getElementById("loader");
-            
-            if (!number) {
-                alert("Please enter a number!");
+
+            if (isNaN(number) || number < 0 || number > 99) {
+                alert("Please enter a number between 0 and 99!");
                 return;
             }
-            
-            let steps = [
-                "Reading your mind...",
-                "Analyzing your thoughts...",
-                "Deciphering the secrets of the universe...",
-                "Almost there...",
-                "Got it!"
-            ];
-            
+
             message.classList.add("hidden");
-            loader.style.display = "inline-block";
-            let index = 0;
-            
-            let interval = setInterval(() => {
-                if (index < steps.length) {
-                    message.classList.remove("hidden");
-                    message.innerText = steps[index];
-                    index++;
-                } else {
-                    clearInterval(interval);
-                    loader.style.display = "none";
-                    message.innerText = `${number} Meaning \n you are thinking about your life. 🤯`;
-                }
-            }, 2000);
+            loader.style.display = "block";
+
+            setTimeout(() => {
+                loader.style.display = "none";
+                message.classList.remove("hidden");
+                message.innerText = insights[number];
+            }, 3000);
         }
     </script>
 </body>
