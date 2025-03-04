@@ -74,7 +74,7 @@ html_template = """
                 } else {
                     clearInterval(interval);
                     loader.style.display = "none";
-                    message.innerText = `${number}! you are thinking about your life. 🤯`;
+                    message.innerText = `${number} Meaning \n you are thinking about your life. 🤯`;
                 }
             }, 2000);
         }
