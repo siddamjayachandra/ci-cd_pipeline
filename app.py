@@ -74,7 +74,7 @@ html_template = """
                 } else {
                     clearInterval(interval);
                     loader.style.display = "none";
-                    message.innerText = `.That is the reason you have entered this number on the box.\n So, after carefully reading your mind ${number} is the number you are thinking in your mind.\n If you want me to read your mind again please enter the number and click on Read my mind. \n Thankyou🤯`;
+                    message.innerText = `You have entered this number on the box beacuse it is there in your mind.\n So, after carefully reading your mind ${number} is the number you are thinking in your mind.\n If you want me to read your mind again please enter the number and click on Read my mind. \n Thankyou🤯`;
                 }
             }, 2000);
         }
